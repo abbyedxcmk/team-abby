@@ -13,3 +13,83 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+//create an emppty array called teammembers
+
+let teammembers = [];
+const questions = {
+    manager: [
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the team manager's name?",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the team manager's id?",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the team manager's email?",
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "What is the team manager's office number?",
+        },
+    ],
+    engineer: [
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the engineer's name?",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the engineer's id?",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the engineer's email?",
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "What is the engineer's GitHub username?",
+        },
+    ],
+    intern: [
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the intern's name?",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the intern's id?",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the intern's email?",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "What is the intern's school?",
+        },
+    ],
+}
+
+function initApp() {
+    addmanager();
+}
+
+function addmanager() {
+
+
+}
