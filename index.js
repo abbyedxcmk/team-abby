@@ -88,6 +88,8 @@ const questions = {
 
 function initApp() {
     addManager();
+    addTeamMembers();
+    console.log(team);
 }
 
 function addManager() {
@@ -145,3 +147,5 @@ function addTeamMembers() {
             });
     }
 }
+
+initApp();
