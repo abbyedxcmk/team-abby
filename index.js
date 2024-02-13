@@ -87,10 +87,10 @@ const questions = {
 }
 
 function initApp() {
-    addmanager();
+    addManager();
 }
 
-function addmanager() {
+function addManager() {
 // use iniqurer to prompt user for manager info and create a new manager object
 let manager;
 inquirer.prompt(questions.manager).then((answers) => {
