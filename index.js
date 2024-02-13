@@ -13,9 +13,10 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-//create an emppty array called teammembers
+//create an empty array called team
+let team = [];
 
-let teammembers = [];
+// create questions object for inquirer
 const questions = {
     manager: [
         {
@@ -90,6 +91,15 @@ function initApp() {
 }
 
 function addmanager() {
-
-
+// use iniqurer to prompt user for manager info and create a new manager object
+let manager;
+inquirer.prompt(questions.manager).then((answers) => {
+    manager = new Manager(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.officeNumber
+    );
+    team.push(manager);
+  });
 }
