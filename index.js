@@ -89,7 +89,15 @@ const questions = {
 async function initApp() {
     await addManager();
     await addTeamMembers();
-    console.log(team);
+    // render the team array to html
+    const teamHtml = render(team);
+    // if OUTPUT_DIR does not exist, make it
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    // write html code to file
+    fs.writeFileSync(outputPath, teamHtml);
+    console.log('The HTML file generated successfully')
 }
 
 async function addManager() {
