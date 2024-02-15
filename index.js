@@ -86,31 +86,29 @@ const questions = {
     ],
 }
 
-function initApp() {
-    addManager();
-    addTeamMembers();
+async function initApp() {
+    await addManager();
+    await addTeamMembers();
     console.log(team);
 }
 
-function addManager() {
+async function addManager() {
     // use iniqurer to prompt user for manager info and create a new manager object
-    let manager;
-    inquirer.prompt(questions.manager).then((answers) => {
-        manager = new Manager(
-            answers.name,
-            answers.id,
-            answers.email,
-            answers.officeNumber
-        );
-        team.push(manager);
-    });
+    const answers = await inquirer.prompt(questions.manager);
+    const manager = new Manager(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
+    );
+    team.push(manager)
 }
 
-function addTeamMembers() {
+async function addTeamMembers() {
     let addMember = true;
     while (addMember) {
         // prompt user to add a team member
-        inquirer
+        const answers = await inquirer
             .prompt([
                 // menu: ask if they want to add an engineer, intern, or finish the team
                 {
@@ -119,32 +117,29 @@ function addTeamMembers() {
                     message: 'Would you like to add a team member?',
                     choices: ['Engineer', 'Intern', 'Finish'],
                 },
-            ])
-            .then((answers) => {
-                if (answers.addMember === 'Engineer') {
-                    inquirer.prompt(questions.engineer).then((answers) => {
-                        const engineer = new Engineer(
-                            answers.name,
-                            answers.id,
-                            answers.email,
-                            answers.github
-                        );
-                        team.push(engineer);
-                    });
-                } else if (answers.addMember === 'Intern') {
-                    inquirer.prompt(questions.intern).then((answers) => {
-                        const intern = new Intern(
-                            answers.name,
-                            answers.id,
-                            answers.email,
-                            answers.school
-                        );
-                        team.push(intern);
-                    });
-                } else {
-                    addMember = false;
-                }
-            });
+            ]);
+
+        if (answers.addMember === 'Engineer') {
+            const engineerAnswers = await inquirer.prompt(questions.engineer);
+            const engineer = new Engineer(
+                engineerAnswers.name,
+                engineerAnswers.id,
+                engineerAnswers.email,
+                engineerAnswers.github
+            );
+            team.push(engineer);
+        } else if (answers.addMember === 'Intern') {
+            const internAnswers = await inquirer.prompt(questions.intern);
+            const intern = new Intern(
+                internAnswers.name,
+                internAnswers.id,
+                internAnswers.email,
+                internAnswers.school
+            );
+            team.push(intern);
+        } else {
+            addMember = false;
+        }
     }
 }
 
